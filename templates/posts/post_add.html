@@ -1,0 +1,26 @@
+{% extends 'base_nav.html' %}
+
+{% block content %}
+<nav>
+    <h1>
+        <a href="{% url 'posts:feeds' %}">Pystagram</a>
+    </h1>
+    <a href="{% url 'users:logout' %}">Logout</a>
+</nav>
+<div id="post-add">
+    <h1>add post</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="id_images">image</label>
+            <input id="id_images" name="images" type="file" multiple>
+        </div>
+        {{ form.as_p }}
+        <div>
+            <label for="id_tags">해시태그</label>
+            <input id="id_tags" name="tags" type="text" placeholder="Enter multiple tags separated by commas(,)">
+        </div>
+        <button type="submit">save</button>
+    </form>
+</div>
+{% endblock %}
